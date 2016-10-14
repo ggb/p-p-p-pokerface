@@ -25,11 +25,13 @@
   (apply = (map suit hand)))
 
 (defn full-house? [hand]
-  (let [min-max (vals (frequencies [4 7 7 4 7]))]
+  (let [min-max (vals (frequencies (map rank hand)))]
     (and (= 2 (apply min min-max)) (= 3 (apply max min-max)))))
 
 (defn two-pairs? [hand]
-  nil)
+  (or
+    (= [2 2 1] (vals (frequencies (map rank hand))))
+    (four-of-a-kind? hand)))
 
 (defn straight? [hand]
   nil)
